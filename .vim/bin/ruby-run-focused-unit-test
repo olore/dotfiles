@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+    
+filename = ARGV[0]
+line_number = ARGV[1].to_i
+
+path = File.expand_path(filename)
+export_for_watir = path =~ /watir/ ? "export HEADLESS=1; " : ""
+
+lines = File.read(filename).split(/\n/)
+(line_number - 1).downto(0) do |i|                                                       
+  if lines[i] =~ /\s*def (test\S*)/                                                      
+    cmd = %{#{export_for_watir}ruby -Ilib:test "#{filename}" -n "#{$1}"}
+  elsif lines[i] =~ /\s*test "(.*)" do/
+    test_name = $1.gsub(' ', '_')                                                        
+    cmd = %{#{export_for_watir}ruby -Ilib:test "#{filename}" -n test_#{test_name}}                          
+  elsif lines[i] =~ /\s*it "(.*)" do/
+    test_name = $1
+    cmd = %{#{export_for_watir}rspec -Ilib:spec "#{filename}" --example "#{test_name}"}                     
+  end 
+    
+  if cmd                                                                                 
+    puts cmd
+    system cmd
+    exit                                                                                 
+  end
+end 
+

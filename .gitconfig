@@ -1,0 +1,12 @@
+[user]
+	name = Brian Olore
+	email = brian@olore.net
+[core]
+	autocrlf = false
+	excludesfile = ~/.gitignore
+[alias]
+  st = status
+[color]
+	diff = auto
+[push]
+	default = simple
