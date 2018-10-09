@@ -4,6 +4,8 @@ set nohlsearch
 set nocompatible
 set backspace=indent,eol,start
 set ruler
+set undofile "maintain undo history between sessions"
+set undodir=~/.vim/undodir
 
 let mapleader = ","
 
