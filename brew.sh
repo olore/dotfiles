@@ -103,5 +103,9 @@ brew install tree
 brew install vbindiff
 #brew install zopfli
 
+brew tap caskroom/fonts
+brew install homebrew/cask-fonts/font-fira-code
+
+
 # Remove outdated versions from the cellar.
 brew cleanup

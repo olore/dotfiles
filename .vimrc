@@ -4,6 +4,8 @@ set nohlsearch
 set nocompatible
 set backspace=indent,eol,start
 set ruler
+set undofile "maintain undo history between sessions"
+set undodir=~/.vim/undodir
 
 let mapleader = ","
 
@@ -95,7 +97,9 @@ so $HOME/.vim/myfiletypes.vim
 
 "set number
 syntax enable
-set background="dark"
+set background=dark
+"let g:solarized_termtrans = 1 " This gets rid of the grey background
+let g:solarized_termcolors=256
 colorscheme solarized
 "set gfn=Bitstream\ Vera\ Sans\ Mono\ 18
 
