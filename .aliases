@@ -1,16 +1,26 @@
 #!/usr/bin/env bash
 
+alias bake='bundle exec rake'
+alias 'do-brew-stuff'='brew update && brew upgrade && brew cleanup && brew cask cleanup'
 alias tailf="tail -f"
 alias u='youtube-dl -x --audio-format mp3 '
-alias bake='bundle exec rake'
+
+# apps
 alias mongoserver='mongod run --config /usr/local/etc/mongod.conf'
 alias restartcrashplan='sudo launchctl unload /Library/LaunchDaemons/com.crashplan.engine.plist && sudo launchctl load /Library/LaunchDaemons/com.crashplan.engine.plist'
+alias 'start-postgres'='brew services start postgres'
+alias 'stop-postgres'='brew services stop postgres'
+alias 'stop-mysql'='brew services stop mysql'
+
+# dev
 alias 'log-ios'='tail -f platforms/ios/cordova/console.log'
 alias 'log-android'='./platforms/android/cordova/log  | grep -E "Plugin|Cordova|chromium"'
-alias 'stop-postgres'='brew services stop postgres'
-alias 'start-postgres'='brew services start postgres'
-alias 'stop-mysql'='brew services stop mysql'
-alias 'do-brew-stuff'='brew update && brew upgrade && brew cleanup && brew cask cleanup'
+alias recent="git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | head"
+
+# docker
+alias docker-clean='docker rm -v $(docker ps -a -q -f status=exited)'
+alias docker-rm-images='docker rmi $(docker images -f "dangling=true" -q)'
+alias docker-rm-images-f='docker rmi $(docker images -q)'
 
 
 # from https://github.com/mathiasbynens/dotfiles
